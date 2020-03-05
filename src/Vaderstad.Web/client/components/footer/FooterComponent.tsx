@@ -10,7 +10,6 @@ export default class FooterComponent extends Vue implements IWebComponentInstanc
 
     @Prop({ default: false }) required: boolean;
     @Prop({ default: { title: 'Hello from FooterComponent!' } }) data?: FooterComponentData
-    //@Inject(WcmUxCore) static wcmUxCore: WcmUxCore;
     
     created() {
        
@@ -22,7 +21,7 @@ export default class FooterComponent extends Vue implements IWebComponentInstanc
     }
 
     onYoutubeButtonClick() {
-        //wcmUxCore.handleClickLink(e, url, "")        
+         
     }
 
     render(h) {
