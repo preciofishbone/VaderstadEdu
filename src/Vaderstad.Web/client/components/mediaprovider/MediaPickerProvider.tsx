@@ -5,10 +5,10 @@ import { StyleFlow, VueComponentBase, MediaPickerTransformElement, MediaPickerPr
 import { IMediaPickerProvider, MediaPickerProviderData, IMediaPickerCustomProviderComponent } from './IMediaPickerProvider';
 import { MediaPickerProviderStyles } from './MediaPickerProvider.css';
 import { MediaPickerImageProviderResult, ProcessImageOption, Guid, ImageModel } from '@omnia/fx-models';
-import { MediaItemSearchResult } from './models/QBankImage';
 import { WebImageService } from "@omnia/fx/services";
 import { Localization } from '@omnia/tooling-composers';
 import { VabImageProviderLocalization } from './loc/localize';
+import { MediaService, MediaItemSearchResult } from '../../core';
 
 @Component
 export default class MediaPickerProvider extends VueComponentBase implements IWebComponentInstance, IMediaPickerCustomProviderComponent {
@@ -18,6 +18,7 @@ export default class MediaPickerProvider extends VueComponentBase implements IWe
     @Prop() transformComponent: MediaPickerTransformElement;
     @Prop() mediaPickerRegistrations?: MediaPickerProviderRegistrations;
     @Inject(WebImageService) private webImageService: WebImageService;
+    @Inject(MediaService) mediaService: MediaService;
     @Localize("Omnia.Ux") private uxLoc: OmniaUxLocalization;
     @Localize(VabImageProviderLocalization.namespace)  loc: VabImageProviderLocalization.locInterface
     processImageOption: ProcessImageOption = ProcessImageOption.MakeWebSafe;
@@ -103,22 +104,17 @@ export default class MediaPickerProvider extends VueComponentBase implements IWe
             this.queryText = searchString;
             this.isSearching = true;
 
-            /* */
+        /* */
 
-            //this.Service.search(this.queryText, 0, 300).then((results) => {
-            //    this.allResults = results;
-            //    this.currentResults = this.getImagesChunk(results, 0, this.loadImageChunkSize)
-            //    this.renderAdditionalFormatting();
-            //    this.isSearching = false;
-            //    this.mediaPickerRegistrations.toggleLoadingMessage(false);
-            //    this.showResultGrid = true;
-            //    this.imageComponentKey = Utils.generateGuid();
-            //    resolve();
-            //}).catch(() => {
-            //    this.isSearching = false;
-            //    this.mediaPickerRegistrations.toggleLoadingMessage(false);
-            //    resolve();
-            //})
+            this.mediaService.search(this.queryText).then((result) => {
+                this.allResults = result;
+                this.currentResults = result;
+                this.renderAdditionalFormatting();
+                this.isSearching = false;
+                this.mediaPickerRegistrations.toggleLoadingMessage(false);
+                this.showResultGrid = true;
+                resolve();
+            });       
         });
     }
 
@@ -208,6 +204,17 @@ export default class MediaPickerProvider extends VueComponentBase implements IWe
     onCloseButtonClick() {
         if (this.onClose)
             this.onClose();
+    }
+
+    renderAdditionalFormatting() {
+        //let h = this.$createElement;
+        //this.currentResults.map((item) => {
+        //    item.displayInfo = (
+        //        <div class="subtitle-1 font-weight-light px-5 py-1">
+        //            Name: {item.name}
+        //        </div>
+        //    )
+        //})
     }
   
     render(h) {

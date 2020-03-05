@@ -21,7 +21,6 @@
     <TypeScriptCompile Remove="client\components\mediaprovider\loc\localize.manifest.ts" />
     <TypeScriptCompile Remove="client\components\mediaprovider\loc\localize.sv-se.manifest.ts" />
     <TypeScriptCompile Remove="client\components\mediaprovider\loc\localize.ts" />
-    <TypeScriptCompile Remove="client\components\mediaprovider\models\QBankImage.ts" />
     <TypeScriptCompile Remove="client\core\Core.manifest.ts" />
     <TypeScriptCompile Remove="client\core\index.ts" />
     <TypeScriptCompile Remove="client\core\models\index.ts" />
@@ -35,6 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="client\components\mediaprovider\models\" />
+    <Folder Include="client\components\mflow\" />
     <Folder Include="client\models\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
