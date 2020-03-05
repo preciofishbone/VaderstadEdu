@@ -5,7 +5,7 @@ import { StyleFlow, VueComponentBase, MediaPickerTransformElement, MediaPickerPr
 import { IMediaPickerProvider, MediaPickerProviderData, IMediaPickerCustomProviderComponent } from './IMediaPickerProvider';
 import { MediaPickerProviderStyles } from './MediaPickerProvider.css';
 import { MediaPickerImageProviderResult, ProcessImageOption, Guid, ImageModel } from '@omnia/fx-models';
-import { QBankImage } from './models/QBankImage';
+import { MediaItemSearchResult } from './models/QBankImage';
 import { WebImageService } from "@omnia/fx/services";
 import { Localization } from '@omnia/tooling-composers';
 import { VabImageProviderLocalization } from './loc/localize';
@@ -28,11 +28,11 @@ export default class MediaPickerProvider extends VueComponentBase implements IWe
     currentFileSize: any;
     isSelecting: boolean = false;
     private showResultGrid: boolean = false;
-    selectedItem: QBankImage;
+    selectedItem: MediaItemSearchResult;
     selectedImageModel: ImageModel;
     queryText: string = '';
-    currentResults: QBankImage[] = [];
-    allResults: QBankImage[] = [];
+    currentResults: MediaItemSearchResult[] = [];
+    allResults: MediaItemSearchResult[] = [];
     private loadImageChunkSize = 20;
 
     backButton: MediaPickerActionButton =
@@ -71,7 +71,7 @@ export default class MediaPickerProvider extends VueComponentBase implements IWe
         this.mediaPickerRegistrations.registerInfiniteScrollCallback(this.onSearchMore);
     }
 
-    getImagesChunk(items: Array<QBankImage>, startIndex, endIndex) {
+    getImagesChunk(items: Array<MediaItemSearchResult>, startIndex, endIndex) {
         if (items.length < (endIndex - startIndex)) {
             return items;
         }
@@ -131,7 +131,7 @@ export default class MediaPickerProvider extends VueComponentBase implements IWe
             resolve();
         })
     }
-    onSelectImage(item: QBankImage) {
+    onSelectImage(item: MediaItemSearchResult) {
         this.mediaPickerRegistrations.toggleLoadingMessage(true, LoadingStyle.overlay);
         this.selectedItem = item;
         this.getImageHandler().then(data => {

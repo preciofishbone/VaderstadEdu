@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Omnia.Fx.HostConfiguration;
 using Omnia.Fx.HostConfiguration.Extensions;
 using Omnia.Fx.NetCore.WebApp.Hosting;
+using Vaderstad.Core.Extensions;
 
 namespace Vaderstad.Web
 {
@@ -52,6 +53,10 @@ namespace Vaderstad.Web
                             {
                                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
                             });
+
+                            //Wire up väderstad services
+                            services.AddVaderstadCore();
+
                         })
                         .ConfigureWebHost(webHostBuilder => {
                             webHostBuilder.Configure((ctx, app) =>
