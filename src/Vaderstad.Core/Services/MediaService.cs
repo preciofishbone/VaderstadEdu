@@ -36,6 +36,7 @@ namespace Vaderstad.Core.Services
             {
                 result.Add(new MediaItemSearchResult
                 {
+                    Title = item["alt_description"].ToString(),
                     ThumbnailUrl = item["urls"]["small"].ToString(),
                     ContentUrl = item["urls"]["full"].ToString()
                 });

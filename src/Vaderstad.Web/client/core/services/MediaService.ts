@@ -1,6 +1,6 @@
 ﻿import { InstanceLifetimes, IHttpApiOperationResult } from '@omnia/fx-models';
 import { Injectable, HttpClientConstructor, HttpClient, Inject } from '@omnia/fx';
-import { MediaItemSearchResult } from '../../components/mediaprovider/models/QBankImage';
+import { MediaItemSearchResult } from '..';
 
 
 @Injectable({ lifetime: InstanceLifetimes.Transient })
