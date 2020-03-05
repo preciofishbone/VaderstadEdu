@@ -10,14 +10,9 @@ export default class FooterComponent extends Vue implements IWebComponentInstanc
 
     @Prop({ default: false }) required: boolean;
     @Prop({ default: { title: 'Hello from FooterComponent!' } }) data?: FooterComponentData
-    @Prop() styles?: typeof FooterComponentStyles;
-
-    private FooterComponentClasses = StyleFlow.use(FooterComponentStyles);
-
+   
     created() {
-        if (this.styles) {
-            this.FooterComponentClasses = StyleFlow.use(FooterComponentStyles, this.styles);
-        }
+       
     }
 
     mounted() {
@@ -27,10 +22,12 @@ export default class FooterComponent extends Vue implements IWebComponentInstanc
 
     render(h) {
         return (
-            <div class={this.FooterComponentClasses.container}>
-                <div>{this.data.title}</div>
-                {this.required ? <div>Im required</div> : null}
-            </div>
+            <v-row no-gutter class="ma-0">
+                <v-col cols="12" class={FooterComponentStyles.theLine}>
+                    
+                </v-col>
+              
+            </v-row>
         )
     }
 }

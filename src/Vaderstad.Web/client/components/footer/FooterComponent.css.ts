@@ -1,16 +1,16 @@
-import { types } from 'typestyle';
+import { types, style } from 'typestyle';
 import { StyleFlow } from '@omnia/fx/ux';
 
 /**
  * Styles for the FooterComponent component
  */
-export const FooterComponentStyles = {} as {
-    container: types.NestedCSSProperties
+export const FooterComponentStyles =  {
+    theLine: style({
+        backgroundColor: "#c2242a",
+        borderBottom: "7px solid #f1ca00",
+        height:"34px"
+    })
 };
 
-StyleFlow.define(FooterComponentStyles, {
-    container: {
-        fontSize: 22
-    }
-})
+
 
