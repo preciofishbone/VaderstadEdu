@@ -16,11 +16,14 @@
     <None Remove="**\*.jsx" />
     <None Remove="**\*.map" />
     <None Remove="wwwroot\omnia\**" />
+    <TypeScriptCompile Remove="client\core\Core.manifest.ts" />
+    <TypeScriptCompile Remove="client\core\index.ts" />
+    <TypeScriptCompile Remove="client\core\services\FooterService.ts" />
+    <TypeScriptCompile Remove="client\core\services\index.ts" />
     <None Include="gulpfile.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="client\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -33,6 +36,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="Omnia.Fx.NetCore.WebApp" Version="3.0.3" />
   </ItemGroup>
 
