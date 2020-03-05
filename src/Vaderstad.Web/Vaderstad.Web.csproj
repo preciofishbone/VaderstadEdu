@@ -18,8 +18,11 @@
     <None Remove="wwwroot\omnia\**" />
     <TypeScriptCompile Remove="client\core\Core.manifest.ts" />
     <TypeScriptCompile Remove="client\core\index.ts" />
+    <TypeScriptCompile Remove="client\core\models\index.ts" />
+    <TypeScriptCompile Remove="client\core\models\MediaItemSearchResult.ts" />
     <TypeScriptCompile Remove="client\core\services\FooterService.ts" />
     <TypeScriptCompile Remove="client\core\services\index.ts" />
+    <TypeScriptCompile Remove="client\core\services\MediaService.ts" />
     <None Include="gulpfile.js" />
   </ItemGroup>
 
@@ -38,6 +41,17 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="Omnia.Fx.NetCore.WebApp" Version="3.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Omnia.Vaderstad.Models\Vaderstad.Models.csproj" />
+    <ProjectReference Include="..\Vaderstad.Core\Vaderstad.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="client\core\services\MediaService.ts">
+      <SubType>Code</SubType>
+    </None>
   </ItemGroup>
 
   <!--***************************************************************************************-->

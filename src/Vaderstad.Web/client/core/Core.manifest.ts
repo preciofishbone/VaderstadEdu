@@ -7,5 +7,7 @@ Composer
         resourcePaths: [
             "./index.js",
             "./services/**/*.js",
+            "./models/**/*.js",
+
         ]
     })

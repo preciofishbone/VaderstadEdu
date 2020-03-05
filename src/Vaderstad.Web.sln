@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vaderstad.Web", "Vaderstad.Web\Vaderstad.Web.csproj", "{97997FD2-6A0A-402D-A2ED-A90033D6CFB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vaderstad.Models", "Omnia.Vaderstad.Models\Vaderstad.Models.csproj", "{7396B41B-41B4-43C4-A61A-F33B7FDCF83F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vaderstad.Core", "Vaderstad.Core\Vaderstad.Core.csproj", "{42390C2B-8B57-4FB6-A131-61E508623873}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{97997FD2-6A0A-402D-A2ED-A90033D6CFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97997FD2-6A0A-402D-A2ED-A90033D6CFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97997FD2-6A0A-402D-A2ED-A90033D6CFB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7396B41B-41B4-43C4-A61A-F33B7FDCF83F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7396B41B-41B4-43C4-A61A-F33B7FDCF83F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7396B41B-41B4-43C4-A61A-F33B7FDCF83F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7396B41B-41B4-43C4-A61A-F33B7FDCF83F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42390C2B-8B57-4FB6-A131-61E508623873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42390C2B-8B57-4FB6-A131-61E508623873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42390C2B-8B57-4FB6-A131-61E508623873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42390C2B-8B57-4FB6-A131-61E508623873}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="4.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2"></PackageReference>
+    <PackageReference Include="Omnia.Fx" Version="3.0.3"></PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.2"></PackageReference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Omnia.Vaderstad.Models\Vaderstad.Models.csproj" />
+  </ItemGroup>
+  
+</Project>
