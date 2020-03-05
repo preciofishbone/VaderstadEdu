@@ -18,8 +18,7 @@ export default class MFlowViewerComponent extends Vue implements IWebComponentIn
     @Inject(MFlowStore) currentMFlowStore: MFlowStore;
 
     private isPageEditMode = false;
-    private isLoading = true;
-    private items = 45;
+    private isLoading = true;    
     isVisibleInNotificationPanel: boolean;
     private uniqueIdHistoryId = Guid.newGuid().toString();
 
@@ -31,11 +30,13 @@ export default class MFlowViewerComponent extends Vue implements IWebComponentIn
 
     public mounted() {
         WebComponentBootstrapper.registerElementInstance(this, this.$el);
-        this.subscriptionHandler.add(Topics.onPageEditModeChanged.subscribe(this.onPageEditModeChange));
-        this.publishNotificationCount();
+        this.subscriptionHandler.add(Topics.onPageEditModeChanged.subscribe(this.onPageEditModeChange));  
         setTimeout(() => {
-            this.isLoading = false;
-        }, 3000);
+            this.currentMFlowStore.actions.loadItems.dispatch().then(() => {
+                this.isLoading = false;
+                this.publishNotificationCount();
+            })
+        }, 2000);
     }
 
     private onPageEditModeChange(message: PageEditModeMessage) {
@@ -46,32 +47,31 @@ export default class MFlowViewerComponent extends Vue implements IWebComponentIn
     }
 
     handleControlVisibleInNotificationPanel(msg: ControlStatusInNotificationMsg) {
-        //this.isVisibleInNotificationPanel = msg.active;
-        //if (this.isVisibleInNotificationPanel) {
-        //    this.markAsViewed();
-        //}
+        this.isVisibleInNotificationPanel = msg.active;
+        if (this.isVisibleInNotificationPanel) {
+            this.markAsViewed();
+        }
     }
 
     publishNotificationCount() {
-        this.notificationPanelStore.actions.getHistory.dispatch([this.uniqueIdHistoryId]).then(entries => {
+        this.notificationPanelStore.actions.getHistory.dispatch([this.uniqueIdHistoryId]).then(entries => {            
             WorkplaceTopics.NotificationPanel.newDataNotification.publish({
                 id: this.settingsKey,
-                notificationCount: this.items
-            });
+                notificationCount: this.currentMFlowStore.getters.getAllItems().length,                
+            });           
         })
     }
 
     markAsViewed() {
-        this.notificationPanelStore.actions.setHistory.dispatch([this.uniqueIdHistoryId]).then(() => {
-            WorkplaceTopics.NotificationPanel.newDataNotification.publish({
-                id: this.settingsKey,
-                notificationCount: 0
-            });
-        });
+        //this.notificationPanelStore.actions.setHistory.dispatch([this.uniqueIdHistoryId]).then(() => {
+        //    WorkplaceTopics.NotificationPanel.newDataNotification.publish({
+        //        id: this.settingsKey,
+        //        notificationCount: this.currentMFlowStore.getters.getAllItems().length
+        //    });
+        //});
     }
 
-    onItemClick(sampleItem: MFlowItem) {
-        --this.items;
+    onItemClick(sampleItem: MFlowItem) {     
         this.currentMFlowStore.mutations.removeItem.commit(sampleItem);
         this.publishNotificationCount()
     }
