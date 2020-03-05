@@ -20,13 +20,34 @@ export default class FooterComponent extends Vue implements IWebComponentInstanc
             .registerElementInstance(this, this.$el);
     }
 
+    onYoutubeButtonClick() {
+        alert('Clicked');
+    }
+
     render(h) {
         return (
             <v-row no-gutter class="ma-0">
                 <v-col cols="12" class={FooterComponentStyles.theLine}>
                     
                 </v-col>
-              
+                <v-col cols="12">
+                    <v-row class={FooterComponentStyles.buttonContainer}>
+                        <v-col cols="6">
+                            <v-btn class="mx-2"
+                                fab
+                                onClick={this.onYoutubeButtonClick}
+                                dark
+                                small
+                                elevation="0"
+                                color="grey">
+                                <v-icon dark small>fab fa-youtube</v-icon>
+                            </v-btn>
+                        </v-col>
+                        <v-col cols="6">
+
+                        </v-col>
+                    </v-row>
+                </v-col>              
             </v-row>
         )
     }
