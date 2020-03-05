@@ -35,6 +35,7 @@ export default class MFlowViewerComponent extends Vue implements IWebComponentIn
             this.currentMFlowStore.actions.loadItems.dispatch().then(() => {
                 this.isLoading = false;
                 this.publishNotificationCount();
+                this.notificationPanelStore.actions.removeHistory.dispatch(this.getObjectIds());
             })
         }, 2000);
     }
@@ -49,12 +50,21 @@ export default class MFlowViewerComponent extends Vue implements IWebComponentIn
     handleControlVisibleInNotificationPanel(msg: ControlStatusInNotificationMsg) {
         this.isVisibleInNotificationPanel = msg.active;
         if (this.isVisibleInNotificationPanel) {
-            this.markAsViewed();
+            //this.markAsViewed();
         }
     }
 
+    public getObjectIds() {
+        let result: string[] = [];
+        this.currentMFlowStore.getters.getAllItems().forEach((item) => {
+            result.push(item.id.toString());
+        });
+        return result;
+    }
+
     publishNotificationCount() {
-        this.notificationPanelStore.actions.getHistory.dispatch([this.uniqueIdHistoryId]).then(entries => {            
+        this.notificationPanelStore.actions.removeHistory
+        this.notificationPanelStore.actions.getHistory.dispatch(this.getObjectIds()).then(entries => {            
             WorkplaceTopics.NotificationPanel.newDataNotification.publish({
                 id: this.settingsKey,
                 notificationCount: this.currentMFlowStore.getters.getAllItems().length,                
@@ -62,28 +72,29 @@ export default class MFlowViewerComponent extends Vue implements IWebComponentIn
         })
     }
 
-    markAsViewed() {
-        //this.notificationPanelStore.actions.setHistory.dispatch([this.uniqueIdHistoryId]).then(() => {
-        //    WorkplaceTopics.NotificationPanel.newDataNotification.publish({
-        //        id: this.settingsKey,
-        //        notificationCount: this.currentMFlowStore.getters.getAllItems().length
-        //    });
-        //});
+    markAsViewed(item: MFlowItem) {
+        this.notificationPanelStore.actions.setHistory.dispatch([item.id.toString()]).then(() => {
+            WorkplaceTopics.NotificationPanel.newDataNotification.publish({
+                id: this.settingsKey,
+                notificationCount: this.currentMFlowStore.getters.getAllItems().length
+            });
+        });
     }
 
-    onItemClick(sampleItem: MFlowItem) {     
-        this.currentMFlowStore.mutations.removeItem.commit(sampleItem);
-        this.publishNotificationCount()
+    onItemClick(item: MFlowItem) {     
+        this.currentMFlowStore.mutations.removeItem.commit(item);
+        this.publishNotificationCount();
+        this.markAsViewed(item);
     }
 
-    renderItem(h, sampleItem: MFlowItem) {
+    renderItem(h, item: MFlowItem) {
         return (
-            <v-list-item onClick={() => this.onItemClick(sampleItem)}>
+            <v-list-item onClick={() => this.onItemClick(item)}>
                 <v-list-item-icon>
-                    <v-icon color="grey">{sampleItem.icon}</v-icon>
+                    <v-icon color="grey">{item.icon}</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                    <v-list-item-title>{sampleItem.title}</v-list-item-title>
+                    <v-list-item-title>{item.title}</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
         )
