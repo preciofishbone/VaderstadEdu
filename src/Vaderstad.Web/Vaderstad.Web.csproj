@@ -16,11 +16,12 @@
     <None Remove="**\*.jsx" />
     <None Remove="**\*.map" />
     <None Remove="wwwroot\omnia\**" />
+    <TypeScriptCompile Remove="client\components\mediaprovider\registration\registration.manifest.ts" />
+    <TypeScriptCompile Remove="client\components\mediaprovider\registration\registration.ts" />
     <None Include="gulpfile.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="client\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
