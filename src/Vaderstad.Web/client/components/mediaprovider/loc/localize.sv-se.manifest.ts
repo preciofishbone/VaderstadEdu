@@ -9,6 +9,5 @@ Composer.registerManifest("bd80005a-2dc3-4dfd-8d70-d14fd5151bed")
         DowloadImageFailed: "Download image failed",
         labels: {
             title : "Sample Component"
-        }
-        
+        }        
     });
