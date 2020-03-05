@@ -1,0 +1,33 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:30756",
+      "sslPort": 44356
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "https://localhost:44356",
+        "OMNIA_LOGGING": "ON",
+        "OMNIA_ENVIRONMENT": "LocalHosting"
+      }
+    },
+    "Vaderstad.Web": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:44356",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "https://localhost:44356",
+        "OMNIA_LOGGING": "ON",
+        "OMNIA_ENVIRONMENT": "LocalHosting"
+      }
+    }
+  }
+}
