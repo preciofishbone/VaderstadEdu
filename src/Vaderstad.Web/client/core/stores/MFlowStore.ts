@@ -1,56 +1,74 @@
 import { Store } from '@omnia/fx/store';
 import { Injectable, Inject } from '@omnia/fx';
-import { InstanceLifetimes } from '@omnia/fx-models';
+import { InstanceLifetimes, Guid } from '@omnia/fx-models';
+import { MFlowItem } from '../models';
 
 @Injectable({
     onStartup: (storeType) => { Store.register(storeType, InstanceLifetimes.Scoped) }
 })
 export class MFlowStore extends Store
 {
-    private testState = this.state<string>("Inital value");
-   
-    constructor()
-    {
-        super({
-            id: "9baf8d36-9242-4232-9b02-f5406cb5e188"
-        });
-    }
-
-    onActivated()
-    {
-        //Called when the store gets created and ready to use
-    }
-
-    onDisposing()
-    {
-        //Called when the store is disposed, do some cleanup here
-    }
-
     /**
-    * Implementation of getters
+    * State
     */
-    getters = {
-        globalSettings: () => {
-            return this.testState;
-        }
+    private items = this.state<Array<MFlowItem>>([]);  
+    private loadedItems = false;
+
+    constructor() {
+        super({ id: "f557ed82-0a18-45e2-8b8d-2686e3b0d4ac" });
     }
 
-    /**
-     * Implementation of mutations
-     */
-    mutations = {
-        update: (newState: string) => {
-            this.testState.mutate(newState);
-        }
+    onActivated() {
     }
-    /**
-     * Implementation of actions
-     */
+
+    onDisposing() {
+
+    }
+
+    /** Implementation of Getters */
+    getters = {
+        getAllItems: () => {
+            return this.items.state;
+        }
+    };
+
+    /** Implementation of Mutations */
+    public mutations = {
+        removeItem: this.mutation((item: MFlowItem) => {
+            let index = this.items.state.findIndex((stateItem) => stateItem.id === item.id);
+            this.items.state.splice(index, 1);
+        })
+    }
+
+    //    /** Implementation of Actions */
     actions = {
-        loadSomething: this.action(() => {
-            return new Promise<null>((resolve, reject) => {
-                //TODO: Do some promise based operations like fething from web api
-                Promise.resolve("Updated value");
+        loadItems: this.action(() => {
+            return new Promise((resolve, reject) => {
+                if (!this.loadedItems) {
+                    this.loadedItems = true;
+                    this.createSampleItems();
+                }
+                resolve();
+            })
+        }),
+    }
+
+    createSampleItems() {
+        this.items.mutate((items) => {
+            items.state.push({
+                id: Guid.newGuid(),
+                icon: "mdi-clock",
+                title: "Item 1"
+            });
+            items.state.push({
+                id: Guid.newGuid(),
+                icon: "mdi-account",
+                title: "Item 2"
+            });
+            items.state.push({
+                id: Guid.newGuid(),
+                icon: "mdi-flag",
+                title: "Item 3"
             });
         })
     }

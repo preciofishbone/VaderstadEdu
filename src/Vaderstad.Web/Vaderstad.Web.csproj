@@ -21,21 +21,24 @@
     <TypeScriptCompile Remove="client\components\mediaprovider\loc\localize.manifest.ts" />
     <TypeScriptCompile Remove="client\components\mediaprovider\loc\localize.sv-se.manifest.ts" />
     <TypeScriptCompile Remove="client\components\mediaprovider\loc\localize.ts" />
+    <TypeScriptCompile Remove="client\components\mflow\registrations\registration.manifest.ts" />
+    <TypeScriptCompile Remove="client\components\mflow\registrations\registration.ts" />
     <TypeScriptCompile Remove="client\core\Core.manifest.ts" />
     <TypeScriptCompile Remove="client\core\index.ts" />
     <TypeScriptCompile Remove="client\core\models\index.ts" />
     <TypeScriptCompile Remove="client\core\models\MediaItemSearchResult.ts" />
+    <TypeScriptCompile Remove="client\core\models\MFlowItem.ts" />
     <TypeScriptCompile Remove="client\core\services\FooterService.ts" />
     <TypeScriptCompile Remove="client\core\services\index.ts" />
     <TypeScriptCompile Remove="client\components\mediaprovider\registration\registration.manifest.ts" />
     <TypeScriptCompile Remove="client\components\mediaprovider\registration\registration.ts" />
     <TypeScriptCompile Remove="client\core\services\MediaService.ts" />
+    <TypeScriptCompile Remove="client\core\stores\index.ts" />
     <None Include="gulpfile.js" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="client\components\mediaprovider\models\" />
-    <Folder Include="client\components\mflow\" />
     <Folder Include="client\models\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

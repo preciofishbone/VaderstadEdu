@@ -35,7 +35,6 @@ export default class MediaPickerProvider extends VueComponentBase implements IWe
     currentResults: MediaItemSearchResult[] = [];
     allResults: MediaItemSearchResult[] = [];
     private loadImageChunkSize = 20;
-
     backButton: MediaPickerActionButton =
         {
             text: this.uxLoc.Common.Buttons.Back,
