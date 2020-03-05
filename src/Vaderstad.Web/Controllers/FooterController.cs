@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Omnia.Fx.Models.Shared;
+using Omnia.Fx.Utilities;
 
 namespace Vaderstad.Web.Controllers
 {
@@ -11,36 +13,25 @@ namespace Vaderstad.Web.Controllers
     [ApiController]
     public class FooterController : ControllerBase
     {
-        // GET: api/Footer
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async ValueTask<ApiResponse<List<string>>> GetFooter()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                
+                var res = new List<string> { "value1", "value2" };
+                return res.AsApiResponse();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
+
+           
         }
 
-        // GET: api/Footer/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Footer
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/Footer/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
     }
 }
