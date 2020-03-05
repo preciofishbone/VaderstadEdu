@@ -4,13 +4,16 @@ import { vueCustomElement, IWebComponentInstance, WebComponentBootstrapper, Loca
 import { StyleFlow } from '@omnia/fx/ux';
 import { IFooterComponent, FooterComponentData } from './IFooterComponent';
 import { FooterComponentStyles } from './FooterComponent.css';
+import { FooterService } from '../../core';
 
 @Component
 export default class FooterComponent extends Vue implements IWebComponentInstance, IFooterComponent {
 
     @Prop({ default: false }) required: boolean;
     @Prop({ default: { title: 'Hello from FooterComponent!' } }) data?: FooterComponentData
-    
+
+    @Inject(FooterService) footerService : FooterService
+   
     created() {
        
     }
@@ -20,8 +23,9 @@ export default class FooterComponent extends Vue implements IWebComponentInstanc
             .registerElementInstance(this, this.$el);
     }
 
-    onYoutubeButtonClick() {
-         
+    async onYoutubeButtonClick() {
+        let res = await this.footerService.getFooter();
+        alert(res[0])
     }
 
     render(h) {
