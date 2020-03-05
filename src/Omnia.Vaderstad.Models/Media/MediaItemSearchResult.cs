@@ -8,8 +8,12 @@ namespace Vaderstad.Models.Media
     {
         public string Title { get; set; }
 
-        public string Url { get; set; }
+        public string ThumbnailUrl { get; set; }
 
-        public string FullUrl { get; set; }
+        public string ContentUrl { get; set; }
+
+
+
+
     }
 }
