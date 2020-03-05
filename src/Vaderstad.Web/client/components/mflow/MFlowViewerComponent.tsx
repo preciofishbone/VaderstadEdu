@@ -20,8 +20,7 @@ export default class MFlowViewerComponent extends Vue implements IWebComponentIn
     private isPageEditMode = false;
     private isLoading = true;    
     isVisibleInNotificationPanel: boolean;
-    private uniqueIdHistoryId = Guid.newGuid().toString();
-
+    
     public created() {
         this.subscriptionHandler.add(WorkplaceTopics.NotificationPanel
             .controlStatusInNotificationPanel(this.settingsKey)
