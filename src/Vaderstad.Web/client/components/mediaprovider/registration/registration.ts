@@ -6,7 +6,7 @@ Topics.registerMediaPickerProvider.publish(
     {
         category: "image",
         name: "VAB Images",
-        iconClass: "",     
+        iconClass: "fal fa-images",           
         elementNameToRender: "vab-media-picker-extension",
         mediaType: MediaPickerProviderMediaTypes.image,
         hasTextSearchSupport: true,
